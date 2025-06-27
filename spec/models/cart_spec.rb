@@ -34,7 +34,24 @@ RSpec.describe Cart, type: :model do
       expect(cart.cart_items.count).to eq(0)
     end
 
+  end
 
+  describe "#remove_product" do
+    it "decrements quantity or removes item" do
+      2.times { cart.add_product(product.id) }
+      cart.remove_product(product.id)
+      expect(cart.cart_items.first.quantity).to eq(1)
+      cart.remove_product(product.id)
+      expect(cart.cart_items.count).to eq(0)
+    end
+  end
 
+  describe "#total_price" do
+    it "calculates total correctly" do
+      cart.add_product(product.id)
+      expect(cart.total_price).to eq(100)
+      cart.add_product(product.id)
+      expect(cart.total_price).to eq(200)
+    end
   end
 end
