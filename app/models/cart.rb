@@ -1,12 +1,17 @@
 class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :products, through: :cart_items
+  #return unless product && product.in_stock?
+
 
   def add_product(product_id)
-    item = cart_items.find_or_initialize_by(product_id: product_id)
-    item.quantity ||= 0
-    item.quantity += 1
-    item.save
+        product = Product.find_by(id: product_id)
+        return unless product && product.in_stock?
+
+        item = cart_items.find_or_initialize_by(product_id: product_id)
+        item.quantity ||= 0
+        item.quantity += 1
+        item.save
   end
 
   def remove_product(product_id)
