@@ -20,5 +20,4 @@ class Cart < ApplicationRecord
       item.destroy
     end
   end
-
 end
