@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
-  let(:cart) { Cart.create }
-  let(:product) { Product.create(name: "Keyboard", price: 100) }
+  let(:user) { User.create!(name: "Test User", email: "test@example.com") }
+  let(:cart) { Cart.create!(user: user) }
+  let(:product) { create(:product) }
 
   describe "#add_product" do
     it "adds a product to the cart" do

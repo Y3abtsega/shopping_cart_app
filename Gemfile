@@ -59,3 +59,13 @@ end
 group :development, :test do
   gem "rspec-rails"
 end
+
+# Gemfile
+group :development, :test do
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 5.0'
+end
+
